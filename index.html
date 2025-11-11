@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Grokit_logo.png">
+    <title>Grokit - Smart Kitchen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--<style>
+  /* Slideshow container */
+  .hero-bg {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Each background image */
+  .hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  /* Active image shows */
+  .hero-bg-image.active {
+    opacity: 0.3;
+  }
+  
+  /* Content stays on top */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+  }
+  /* Footer animation */
+.footer-word {
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+@keyframes glow {
+    0%, 100% { 
+        color: #10b981;
+        text-shadow: 0 0 10px #10b981;
+    }
+}
+
+.footer-word.active {
+    animation: glow 1s ease-in-out;
+    color: #10b981;
+    font-weight: 600;
+}
+</style> -->
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <!-- Navigation bar: white background, bottom border, padding on left/right and top/bottom -->
+<nav class="bg-white border-b border-gray-200 px-6 py-4">
+    
+    <!-- Container: max width, centered, items in a row, space between left and right -->
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+        
+        <!-- Left side: logo and menu links in a row with spacing -->
+        <div class="flex items-center space-x-8">
+            
+            <!-- Logo text: large, bold, dark gray -->
+             <img src="images/Grokit_logo.png" alt="Grokit Logo" class="w-8 h-8">
+            <h1 class="text-xl font-bold text-gray-800">Grokit</h1>
+            
+            <!-- Menu links: hidden on mobile, show on medium+ screens, horizontal row -->
+            <div class="hidden md:flex space-x-6">
+                
+                <!-- Home link: green text, light green background, padding, rounded corners -->
+                <a href="#" class="text-emerald-600 bg-emerald-50 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                
+                <!-- Other links: gray text, darker on hover, padding, rounded -->
+                <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Family</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Meals</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Lists</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Pantry</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Recipes</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Cooking</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Receipts</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Shops</a>
+            </div>
+        </div>
+        
+        <!-- Right side: Sign in button - green background, white text, padding, rounded -->
+        <div class="flex items-center space-x-4">
+            <span class="text-sm text-gray-600">👤 Guest User</span>
+            <a href="signin.html">
+            <button class="bg-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-medium">Sign in</button>
+            </a>
+        </div>    
+    </div>
+</nav>
+<!-- Hero with slideshow background -->
+<section class="hero-bg bg-gray-800 py-20 text-center" style="min-height: 400px;">
+    
+    <!-- Background images (add more to this list later) -->
+    <div class="hero-bg-image active" style="background-image: url('images/Family.jpg');"></div>
+    <div class="hero-bg-image" style="background-image: url('images/meals.jpg');"></div>
+    <div class="hero-bg-image" style="background-image: url('images/veget.jpg');"></div>
+    <div class="hero-bg-image" style="background-image: url('images/Fruits.jpg');"></div>
+    <div class="hero-bg-image" style="background-image: url('images/Lisitng.jpg');"></div>
+    <!-- Content on top -->
+    <div class="hero-content max-w-4xl mx-auto px-6">
+        <h2 class="text-5xl font-bold text-white mb-4">Welcome, Guest!</h2>
+        <p class="text-xl text-white mb-8">Plan meals, create lists,shop smart, track pantry,copy recipes,enjoy cooking,scan receipts,.</p>
+        
+        <div class="max-w-2xl mx-auto flex gap-3">
+            <input type="text" placeholder="Search..." 
+                   class="flex-1 px-4 py-3 rounded-lg border text-lg">
+            <button class="bg-emerald-500 text-white px-8 py-3 rounded-lg font-medium hover:bg-emerald-600">
+                Search
+            </button>
+        </div>
+    </div>
+</section>
+<!-- Main content container -->
+<!-- changed to include this weeks plan <div class="max-w-7xl mx-auto px-6 py-8">
+-->
+<div class="max-w-7xl mx-auto px-6 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    
+    <!-- Left Column - Main Content (what we already have) -->
+        <div class="lg:col-span-2">  
+            <!-- Quick Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+    
+        <!-- Pantry items card -->
+
+                <!--<div class="bg-white rounded-xl p-6 shadow-md border border-gray-200"> -->
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer">    
+                    <div class="flex items-center space-x-4">
+                <!-- <div class="text-4xl">📦</div> -->
+                        <div class="text-4xl"> 
+                            <img src="images/Home page/still-life-with-various-spices.jpg" alt="Pantry Icon" class="w-10 h-10">
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Pantry items</p>
+                            <p class="text-2xl font-bold text-gray-800">6</p>
+                            <p class="text-sm text-yellow-600">low</p>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Meals planned card -->
+                    <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer">                    <div class="flex items-center space-x-4">
+                        <div class="text-4xl">📅</div>
+                            <div>
+                                <p class="text-sm text-gray-600">Meals planned this week</p>
+                                <p class="text-2xl font-bold text-gray-800">5</p>
+                                <p class="text-sm text-gray-600">Budget used</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+                <!-- Main Action Buttons -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+    
+                    <!-- Meal Planner button -->
+                    <div class="bg-white rounded-xl p-8 shadow-md border border-gray-200 text-center hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl">📅</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Meal Planner</h3>
+                        <button class="px-4 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">Plan</button>
+                    </div>
+    
+                    <!-- Shopping List button -->
+                    <div class="bg-white rounded-xl p-8 shadow-md border border-gray-200 text-center hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl">🛒</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Shopping List</h3>
+                        <button class="px-4 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">View</button>
+                    </div>
+                    <!-- Nearby Shops button -->
+                    <div class="bg-white rounded-xl p-8 shadow-md border border-gray-200 text-center hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <!-- <span class="text-3xl">📍</span> -->
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Nearby Shops</h3>
+                        <button class="px-4 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">Find</button>
+                    </div>
+                </div>
+<!-- This Week's Plan -->
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200 mb-8">
+    
+                    <!-- Header with Add button -->
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800">This Week's Plan</h3>
+                        <button class="text-emerald-600 text-sm font-medium hover:text-emerald-700">+ Add Meal</button>
+                    </div>
+    
+                <!-- Meal cards grid -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    
+                <!-- Meal 1 -->
+                    <div class="text-center cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200">                        <div class="aspect-square bg-gray-100 rounded-xl mb-3 flex items-center justify-center text-5xl">
+                        🥗
+                        </div>
+                        <h4 class="font-medium text-gray-800 text-sm mb-2">Bean Salad</h4>
+                        <span class="text-xs text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">⏱️ 30 min</span>
+                    </div>
+                
+                <!-- Meal 2 -->
+                    <div class="text-center cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200">
+                        <div class="aspect-square bg-gray-100 rounded-xl mb-3 flex items-center justify-center text-5xl">
+                            🍜
+                        </div>
+                        <h4 class="font-medium text-gray-800 text-sm mb-2">Vegetable Stir Fry</h4>
+                        <span class="text-xs text-yellow-600 bg-yellow-50 px-2 py-1 rounded-full">⏱️ 40 min</span>
+                    </div>
+                    
+                    <!-- Meal 3 -->
+                    <div class="text-center cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200">
+                        <div class="aspect-square bg-gray-100 rounded-xl mb-3 flex items-center justify-center text-5xl">
+                            🍛
+                        </div>
+                        <h4 class="font-medium text-gray-800 text-sm mb-2">Curry Rice</h4>
+                        <span class="text-xs text-yellow-600 bg-yellow-50 px-2 py-1 rounded-full">⏱️ 40 min</span>
+                    </div>
+                    
+                    <!-- Meal 4 -->
+                    <div class="text-center cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200">
+                        <div class="aspect-square bg-gray-100 rounded-xl mb-3 flex items-center justify-center text-5xl">
+                            🥙
+                        </div>
+                        <h4 class="font-medium text-gray-800 text-sm mb-2">Organic Salad</h4>
+                        <span class="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full">⏱️ 40 min</span>
+                    </div>
+                    
+                    <!-- Meal 5 -->
+                    <div class="text-center cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200">
+                        <div class="aspect-square bg-gray-100 rounded-xl mb-3 flex items-center justify-center text-5xl">
+                            🍲
+                        </div>
+                        <h4 class="font-medium text-gray-800 text-sm mb-2">Vegan Soup</h4>
+                        <span class="text-xs text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">⏱️ 30 min</span>
+                    </div>    
+                </div>
+            </div>
+        </div>        
+        
+        <!-- Right Column - Sidebar -->
+        <div class="space-y-6">
+            
+            <!-- Shopping List Card -->
+            <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Shopping list</h3>
+                    <button class="text-emerald-600 text-sm">View full list</button>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex justify-between py-2 border-b">
+                        <span class="text-gray-800">Produce</span>
+                        <span class="text-sm text-gray-600">4</span>
+                    </div>
+                    <div class="flex justify-between py-2 border-b">
+                        <span class="text-gray-800">Eggs</span>
+                        <span class="text-sm text-gray-600">5</span>
+                    </div>
+                    <div class="flex justify-between py-2 border-b">
+                        <span class="text-gray-800">Milk</span>
+                        <span class="text-sm text-gray-600">40</span>
+                    </div>
+                    <div class="flex justify-between py-2">
+                        <span class="text-gray-800">Other</span>
+                        <span class="text-sm text-gray-600">2</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions Card -->
+            <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick actions</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                            <span class="text-gray-800">Produce</span>
+                        </div>
+                        <span class="text-sm text-gray-600">5 items</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <span class="text-gray-800">Eggs</span>
+                        </div>
+                        <span class="text-sm text-gray-600">3 items</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <span class="text-gray-800">Milk</span>
+                        </div>
+                        <span class="text-sm text-gray-600">5 items</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Receipts Card -->
+            <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent receipts</h3>
+                <div class="space-y-3">
+                    <div class="p-4 rounded-lg bg-gray-50">
+                        <div class="h-2 bg-gray-200 rounded mb-2"></div>
+                        <div class="h-2 bg-gray-200 rounded w-3/4 mb-2"></div>
+                        <div class="h-2 bg-gray-200 rounded w-1/2 mb-3"></div>
+                        <span class="inline-block px-2 py-1 rounded text-xs font-medium bg-emerald-500 text-white">Parsed</span>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50">
+                        <div class="h-2 bg-gray-200 rounded mb-2"></div>
+                        <div class="h-2 bg-gray-200 rounded w-3/4 mb-2"></div>
+                        <div class="h-2 bg-gray-200 rounded w-1/2 mb-3"></div>
+                        <span class="inline-block px-2 py-1 rounded text-xs font-medium bg-blue-500 text-white">Needs review</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+</div>  
+</div>
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <p class="text-gray-400 mb-2">© 2025 Grokit - Smart Kitchen Assistant</p>
+        <p class="text-gray-400 mb-2">A Product from i-Daitics Ltd - United Kingdom </p>
+
+        <!-- <p class="text-sm text-gray-500">Plan meals • Create list • Shop smart • Track pantry • Save Recipes • Enjoy Cooking </p> -->
+         <p class="text-sm text-gray-500">
+    <span class="footer-word">Plan meals</span> • 
+    <span class="footer-word">Create list</span> • 
+    <span class="footer-word">Shop smart</span> • 
+    <span class="footer-word">Track pantry</span> • 
+    <span class="footer-word">Save Recipes</span> • 
+    <span class="footer-word">Enjoy Cooking</span>
+</p>
+
+    </div>
+</footer>
+<!-- JavaScript for slideshow -->
+<script src='script.js'></script>
+<!--
+  // List of images (add more here later!)
+  const images = document.querySelectorAll('.hero-bg-image');
+  let currentIndex = 0;
+  
+  // Change image every 3 seconds
+  setInterval(() => {
+    images[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % images.length;
+    images[currentIndex].classList.add('active');
+  }, 3000);
+  
+  // Footer words animation
+  const words = document.querySelectorAll('.footer-word');
+  let currentWord = 0;
+  
+  setInterval(() => {
+    words.forEach(w => w.classList.remove('active'));
+    words[currentWord].classList.add('active');
+    currentWord = (currentWord + 1) % words.length;
+  }, 1500);
+-->
+
+
+</body>
+</html>
