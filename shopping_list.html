@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List - Grokit</title>
+    <link rel="icon" type="image/png" href="images/Grokit_logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    
+    <!-- Navigation Header (same as homepage) -->
+    <nav class="bg-white border-b border-gray-200 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="Grokit_logo.png" alt="Grokit Logo" class="w-8 h-8">
+                    <h1 class="text-xl font-bold text-gray-800">Grokit</h1>
+                </a>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Home</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Family</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Meals</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Pantry</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Receipts</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Shops</a>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-600">👤 <span id="navUserName">Guest User</span></span>
+                <a href="signin.html">
+                    <button class="bg-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-medium">Sign in</button>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+<div class="max-w-6xl mx-auto px-6 py-6">
+    <h1 class="text-2xl font-bold text-gray-800">Shopping List</h1>
+</div>
+
+<!-- Main Container -->
+<div class="max-w-6xl mx-auto px-6 pb-8">
+    
+    <!-- Add New Item Form -->
+<div class="bg-white rounded-lg shadow-md p-6 mb-6">
+    <h3 class="text-lg font-semibold text-gray-800 mb-4">Add New Item</h3>
+    
+    <form id="addItemForm" class="flex flex-wrap gap-3 items-end">
+        <!-- Item Name -->
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Item</label>
+            <input type="text" id="itemName" placeholder="Item name" 
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+        </div>
+        
+        <!-- Quantity -->
+        <div class="w-32">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
+            <input type="number" id="itemQty" value="1" min="0.01" step="0.01"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg text-center focus:ring-2 focus:ring-blue-500">
+        </div>
+        
+        <!-- Unit -->
+        <div class="w-32">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Unit</label>
+            <select id="itemUnit" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                <option value="">Select</option>
+                <option value="kg">kg</option>
+                <option value="g">g</option>
+                <option value="ltr">ltr</option>
+                <option value="ml">ml</option>
+                <option value="pcs">pcs</option>
+                <option value="dozen">dozen</option>
+            </select>
+        </div>
+        
+        <!-- Note -->
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Note (optional)</label>
+            <input type="text" id="itemNote" placeholder="Any note" 
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+        </div>
+        
+        <!-- Add Button -->
+        <button type="submit" class="bg-blue-600 text-white px-8 py-2 rounded-lg font-medium hover:bg-blue-700 h-[42px]">
+            Add +
+        </button>
+    </form>
+</div>
+        <!-- Pending Items Section -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold text-gray-800">Pending Items</h3>
+            <span class="text-sm text-gray-600">Total: <span id="pendingCount">0</span></span>
+        </div>
+        
+        <!-- Pending Items Table -->
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-50 border-b">
+                    <tr>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Item</th>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Quantity</th>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Unit</th>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Note</th>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Status</th>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="pendingItemsBody">
+                    <!-- Items will be added here dynamically -->
+                    <tr>
+                        <td colspan="6" class="text-center py-8 text-gray-500">No pending items</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Purchased Items Section -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold text-gray-800">Purchased Items</h3>
+            <span class="text-sm text-gray-600">Total: <span id="purchasedCount">0</span></span>
+        </div>
+        
+        <!-- Purchased Items Table -->
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-50 border-b">
+                    <tr>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Item</th>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Quantity</th>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Unit</th>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Note</th>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Status</th>
+                        <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="purchasedItemsBody">
+                    <!-- Items will be added here dynamically -->
+                    <tr>
+                        <td colspan="6" class="text-center py-8 text-gray-500">No purchased items</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
