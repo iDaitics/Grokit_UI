@@ -369,3 +369,146 @@ function renderLists() {
 if (window.location.pathname.includes('shoppinglist')) {
   renderLists();
 }
+// OTP Verification - Simplified
+if (window.location.pathname.includes('otp-verify')) {
+  
+  const VALID_EMAIL_OTP = '123456';
+  const VALID_MOBILE_OTP = '654321';
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const otpForm = document.querySelector('form');
+    
+    if (otpForm) {
+      otpForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const emailOTP = document.getElementById('emailOTP').value;
+        const mobileOTP = document.getElementById('mobileOTP').value;
+        
+        if (emailOTP !== VALID_EMAIL_OTP) {
+          alert('Invalid Email OTP! Use: 123456');
+          return;
+        }
+        
+        if (mobileOTP !== VALID_MOBILE_OTP) {
+          alert('Invalid Mobile OTP! Use: 654321');
+          return;
+        }
+        
+        alert('Verification successful!');
+        localStorage.setItem('isLoggedIn', 'true');
+        window.location.replace('index.html');
+      });
+    }
+  });
+}
+// Sign Up - Step 1 to Step 2
+if (window.location.pathname.includes('signup')) {
+  
+  const step1Form = document.getElementById('signupStep1Form');
+  
+  if (step1Form) {
+    step1Form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      
+      if (!name || !email || !mobile) {
+        alert('Please fill all fields');
+        return;
+      }
+      
+      // Store step 1 data
+      sessionStorage.setItem('signupStep1', JSON.stringify({ name, email, mobile }));
+      
+      // Redirect to Step 2 (password page)
+      window.location.href = 'signup-step2.html';
+    });
+  }
+}
+
+// Password Strength Checker for Step 2
+const passwordInputStep2 = document.getElementById('password');
+if (passwordInputStep2 && window.location.pathname.includes('signup-step2')) {
+  
+  passwordInputStep2.addEventListener('input', function() {
+    const password = this.value;
+    const strengthDiv = document.getElementById('passwordStrength');
+    
+    // Show strength indicator when typing
+    if (password.length > 0) {
+      strengthDiv.classList.remove('hidden');
+    } else {
+      strengthDiv.classList.add('hidden');
+      return;
+    }
+    
+    let strength = 0;
+    
+    // Check length (8+ characters)
+    if (password.length >= 8) {
+      document.getElementById('check-length').textContent = '✅';
+      strength += 20;
+    } else {
+      document.getElementById('check-length').textContent = '❌';
+    }
+    
+    // Check uppercase
+    if (/[A-Z]/.test(password)) {
+      document.getElementById('check-uppercase').textContent = '✅';
+      strength += 20;
+    } else {
+      document.getElementById('check-uppercase').textContent = '❌';
+    }
+    
+    // Check lowercase
+    if (/[a-z]/.test(password)) {
+      document.getElementById('check-lowercase').textContent = '✅';
+      strength += 20;
+    } else {
+      document.getElementById('check-lowercase').textContent = '❌';
+    }
+    
+    // Check number
+    if (/\d/.test(password)) {
+      document.getElementById('check-number').textContent = '✅';
+      strength += 20;
+    } else {
+      document.getElementById('check-number').textContent = '❌';
+    }
+    
+    // Check special character
+    if (/[@$!%*?&#]/.test(password)) {
+      document.getElementById('check-special').textContent = '✅';
+      strength += 20;
+    } else {
+      document.getElementById('check-special').textContent = '❌';
+    }
+    
+    // Update progress bar
+    const strengthBar = document.getElementById('strengthBar');
+    const strengthText = document.getElementById('strengthText');
+    
+    strengthBar.style.width = strength + '%';
+    
+    if (strength <= 40) {
+      strengthBar.className = 'h-full transition-all duration-300 bg-red-500';
+      strengthText.textContent = 'Weak';
+      strengthText.className = 'text-xs text-center mt-1 font-medium text-red-500';
+    } else if (strength <= 60) {
+      strengthBar.className = 'h-full transition-all duration-300 bg-yellow-500';
+      strengthText.textContent = 'Fair';
+      strengthText.className = 'text-xs text-center mt-1 font-medium text-yellow-500';
+    } else if (strength < 100) {
+      strengthBar.className = 'h-full transition-all duration-300 bg-blue-500';
+      strengthText.textContent = 'Good';
+      strengthText.className = 'text-xs text-center mt-1 font-medium text-blue-500';
+    } else {
+      strengthBar.className = 'h-full transition-all duration-300 bg-green-500';
+      strengthText.textContent = 'Strong';
+      strengthText.className = 'text-xs text-center mt-1 font-medium text-green-500';
+    }
+  });
+}
