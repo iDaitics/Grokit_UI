@@ -10,7 +10,7 @@
 </head>
 <body class="bg-gray-50 min-h-screen">
     
-    <!-- Our Standard Navigation Header -->
+    <!-- Navigation Header -->
     <nav class="bg-white border-b border-gray-200 px-6 py-4">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-8">
@@ -23,6 +23,7 @@
                     <a href="index.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Home</a>
                     <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Family</a>
                     <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Meals</a>
+                    <a href="lists.html" class="text-emerald-600 bg-emerald-50 px-3 py-2 rounded-md text-sm font-medium">Lists</a>
                     <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Pantry</a>
                     <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Receipts</a>
                     <a href="#" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm">Shops</a>
@@ -42,4 +43,46 @@
     <div class="max-w-6xl mx-auto px-6 py-8">
         
         <!-- Page Title -->
-        <h2 class="text-2xl
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Your Grocery Lists</h2>
+        
+        <!-- Create New List Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex gap-3">
+                <input type="text" id="newListName" placeholder="New list name" 
+                       class="flex-1 max-w-md px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500">
+                <button onclick="createList()" class="bg-emerald-500 text-white px-8 py-3 rounded-lg font-medium hover:bg-emerald-600">
+                    Create
+                </button>
+            </div>
+        </div>
+        
+        <!-- Active Lists -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-6">Active Lists</h3>
+            
+            <div id="listsContainer" class="space-y-3 mb-6">
+                <!-- Lists rendered here -->
+                <p class="text-center text-gray-500 py-8">No active lists. Create one above!</p>
+            </div>
+            
+            <!-- Bulk Actions -->
+            <div class="flex items-center gap-4 pt-4 border-t">
+                <button onclick="selectAll()" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                    Select All
+                </button>
+                <button onclick="deleteSelected()" class="px-6 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700">
+                    Delete Selected
+                </button>
+                <button onclick="deselectAll()" class="p-2 text-gray-600 hover:text-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

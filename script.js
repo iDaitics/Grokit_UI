@@ -512,3 +512,123 @@ if (passwordInputStep2 && window.location.pathname.includes('signup-step2')) {
     }
   });
 }
+// Lists Dashboard Functionality
+let groceryLists = [
+  { id: 1, name: "Weekly Shopping", itemCount: 12, date: "Nov 10, 11:44", selected: false },
+  { id: 2, name: "Party Supplies", itemCount: 8, date: "Nov 09, 15:20", selected: false }
+];
+
+function createList() {
+  const listName = document.getElementById('newListName')?.value.trim();
+  
+  if (!listName) {
+    alert('Please enter a list name');
+    return;
+  }
+  
+  const newList = {
+    id: Date.now(),
+    name: listName,
+    itemCount: 0,
+    date: new Date().toLocaleString('en-US', { 
+      month: 'short', 
+      day: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    }),
+    selected: false
+  };
+  
+  groceryLists.push(newList);
+  document.getElementById('newListName').value = '';
+  renderLists();
+}
+
+function toggleListSelection(id) {
+  const list = groceryLists.find(l => l.id === id);
+  if (list) {
+    list.selected = !list.selected;
+    renderLists();
+  }
+}
+
+function selectAll() {
+  groceryLists.forEach(list => list.selected = true);
+  renderLists();
+}
+
+function deselectAll() {
+  groceryLists.forEach(list => list.selected = false);
+  renderLists();
+}
+
+function deleteSelected() {
+  const selectedCount = groceryLists.filter(l => l.selected).length;
+  
+  if (selectedCount === 0) {
+    alert('Please select lists to delete');
+    return;
+  }
+  
+  if (confirm(`Delete ${selectedCount} selected list(s)?`)) {
+    groceryLists = groceryLists.filter(l => !l.selected);
+    renderLists();
+  }
+}
+
+function deleteList(id) {
+  if (confirm('Delete this list?')) {
+    groceryLists = groceryLists.filter(l => l.id !== id);
+    renderLists();
+  }
+}
+
+function openList(id) {
+  // Redirect to shopping list page
+  window.location.href = `shopping_list.html?listId=${id}`;
+}
+
+function renderLists() {
+  const container = document.getElementById('listsContainer');
+  
+  if (!container) return;
+  
+  if (groceryLists.length === 0) {
+    container.innerHTML = '<p class="text-center text-gray-500 py-8">No active lists. Create one above!</p>';
+    return;
+  }
+  
+  container.innerHTML = groceryLists.map(list => `
+    <div class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition">
+      <div class="flex items-center space-x-4 flex-1">
+        <input type="checkbox" ${list.selected ? 'checked' : ''} 
+               onchange="toggleListSelection(${list.id})"
+               class="w-5 h-5 text-emerald-500 rounded focus:ring-emerald-500">
+        <div class="flex-1 cursor-pointer" onclick="openList(${list.id})">
+          <div class="flex items-center gap-2">
+            <span class="font-medium text-gray-800">${list.name}</span>
+            <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">${list.itemCount}</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center space-x-6">
+        <span class="text-sm text-gray-500">${list.date}</span>
+        <button onclick="deleteList(${list.id})" class="text-red-500 hover:text-red-700">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Initialize on page load
+if (window.location.pathname.includes('lists')) {
+  renderLists();
+}
+function openList(id) {
+  console.log('Opening list:', id);
+  alert('Opening list: ' + id);
+  window.location.href = `shopping_list.html?listId=${id}`;
+}
