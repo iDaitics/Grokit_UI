@@ -632,3 +632,54 @@ function openList(id) {
   alert('Opening list: ' + id);
   window.location.href = `shopping_list.html?listId=${id}`;
 }
+
+// Barcode Scanner Functionality
+let barcodeStream = null;
+
+function scanBarcode() {
+  const video = document.getElementById('barcodeVideo');
+  const container = document.getElementById('cameraContainer');
+  
+  container.classList.remove('hidden');
+  
+  // Request camera access
+  navigator.mediaDevices.getUserMedia({ 
+    video: { facingMode: 'environment' } // Use back camera on mobile
+  })
+  .then(function(stream) {
+    barcodeStream = stream;
+    video.srcObject = stream;
+    
+    // Note: Full barcode detection requires external library like QuaggaJS
+    // For now, user can manually enter barcode
+    alert('Camera started! Please manually enter the barcode in the input field above for now.\n\n(Full auto-detection requires additional barcode library)');
+  })
+  .catch(function(err) {
+    alert('Camera access denied or not available: ' + err.message);
+    container.classList.add('hidden');
+  });
+}
+
+function stopScanning() {
+  if (barcodeStream) {
+    barcodeStream.getTracks().forEach(track => track.stop());
+    barcodeStream = null;
+  }
+  document.getElementById('cameraContainer').classList.add('hidden');
+}
+
+function lookupBarcode() {
+  const barcode = document.getElementById('barcodeInput').value.trim();
+  
+  if (!barcode) {
+    alert('Please enter a barcode first');
+    return;
+  }
+  
+  // Simulate barcode lookup (in real app, call barcode API like Open Food Facts)
+  alert('Looking up barcode: ' + barcode + '\n\n(In production, this would fetch product details from a barcode database)');
+  
+  // Example: Auto-fill item name
+  document.getElementById('itemName').value = 'Product from barcode: ' + barcode;
+  document.getElementById('barcodeInput').value = '';
+}
